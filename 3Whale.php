@@ -11,7 +11,7 @@ class plugin_class
 {
 	var $page_title;
 	var $menu_title;
-	var $access_level;
+	var $access_level; // 10 = admin 0 = подписчик 7 = редактор 
 	var $add_page_to; // 1=add_menu_page 2=add_options_page 3=add_theme_page 4=add_management_page 5=plugin
 	var $short_description;
 
@@ -26,7 +26,7 @@ class plugin_class
 	function get_options()
 	{
 		$options = get_option('3Whale_options');
-
+		
 		$this->url_youtube = $options['url_youtube'];
 		$this->is_active = $options['is_active'];
 
@@ -55,8 +55,8 @@ EOF;
 		if (isset($_POST['UPDATE'])) ### обновление
 		{
 			echo '<div id="message" class="updated fade"><p><strong>Обновлено!</strong></p></div>';
-
-			$this->url_youtube = (trim($_POST['url_youtube']))?trim($_POST['url_youtube']):$this->url_rss;
+			$url_temp = str_replace('\"',' ',$_POST['url_youtube']);
+			$this->url_youtube = trim($url_temp,' ');
 			$this->is_active = trim($_POST['is_active']);
 
 			$options = array (
@@ -91,7 +91,7 @@ echo '</table>';
 				<input type="submit" name="UPDATE" class="button-primary" value="Готово" />
 			</p>
 		</form>';
-		echo '<h3>Инструкция для самых умных</h3> <br/> <img src="'.plugins_url('Manual.jpg', __FILE__).'" alt="Инструкция для самых умных">';
+		echo '<h3>Инструкция для самых маленьких</h3> <br/> <img src="'.plugins_url('Manual.jpg', __FILE__).'" alt="Инструкция для самых умных">';
 	}
 	
 	function activate()
@@ -111,11 +111,10 @@ echo '</table>';
 
 	function WhalePlayer( $atts ) 
 	{
-
 		$options = get_option('3Whale_options');
 		if($options['is_active'] == true)
 		{
-			return'<center><iframe width="853" height="480" src="'.$options['url_youtube'].'" frameborder="0" allowfullscreen></iframe></center>';
+			return'<center><iframe width="850" height="480" src="'.$options['url_youtube'].'" frameborder="0" allowfullscreen></iframe></center>';
 		}
 		return;
 	}
@@ -128,7 +127,7 @@ $path_to_php_file_plugin = basename(__FILE__); //'3Whale.php'
 
 $my_plugin->page_title = 'Плеер для 3х китов'; // название плагина (заголовок)
 $my_plugin->menu_title = '3 Кита'; // название в меню
-$my_plugin->access_level = 5; // уровень доступа
+$my_plugin->access_level = 7; // уровень доступа
 $my_plugin->add_page_to = 2; // куда добавлять страницу: 1=главное меню 2=настройки 3=управление 4=шаблоны 5=плагины
 
 // короткое описание плагина
