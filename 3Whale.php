@@ -7,7 +7,6 @@ Author: hacpatb
 Version: 0.1 beta
 Author URI: 
 */
-
 class plugin_class 
 {
 	var $page_title;
