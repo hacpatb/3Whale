@@ -18,7 +18,6 @@ class plugin_class
 	var $url_youtube;	//ссылка на видео 
 	var $is_active;		//активноа или нет 
 
-
 	function plugin_class() 
 	{
 		$this->get_options();
@@ -32,6 +31,7 @@ class plugin_class
 		$this->is_active = $options['is_active'];
 
 	}
+
 	function add_admin_menu()
 	{
 		if ( $this->add_page_to == 1 )
@@ -45,6 +45,7 @@ class plugin_class
 		elseif ( $this->add_page_to == 5 )
 			add_submenu_page('plugins.php', $this->page_title, $this->menu_title, $this->access_level, __FILE__, array($this, 'admin_page'));
 	}
+
 	function admin_page()
 	{
 		echo <<<EOF
@@ -68,7 +69,8 @@ EOF;
 		$this->view_options_page();
 		echo '</div>';
 	}
-function view_options_page() 
+
+	function view_options_page() 
 	{
 		echo <<<EOF
 <h3>Опции</h3>
@@ -91,6 +93,7 @@ echo '</table>';
 		</form>';
 		echo '<h3>Инструкция для самых умных</h3> <br/> <img src="'.plugins_url('Manual.jpg', __FILE__).'" alt="Инструкция для самых умных">';
 	}
+	
 	function activate()
 	{
 		$options = array (
@@ -106,7 +109,8 @@ echo '</table>';
 		delete_option('3Whale_options');
 	}
 
-	function WhalePlayer( $atts ) {
+	function WhalePlayer( $atts ) 
+	{
 
 		$options = get_option('3Whale_options');
 		if($options['is_active'] == true)
