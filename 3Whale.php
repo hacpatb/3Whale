@@ -64,6 +64,11 @@ EOF;
 				'is_active' => $this->is_active
 			);
 			update_option('3Whale_options', $options, 'Настройки плагина 3х китов', 'yes');
+			//Обновление страницы для сброса кеша
+			$my_post = array(
+				'ID' => 46213
+			);
+			wp_update_post( $my_post );
 
 		}
 		$this->view_options_page();
@@ -91,7 +96,14 @@ echo '</table>';
 				<input type="submit" name="UPDATE" class="button-primary" value="Готово" />
 			</p>
 		</form>';
-		echo '<h3>Инструкция для самых маленьких</h3> <br/> <img src="'.plugins_url('Manual.jpg', __FILE__).'" alt="Инструкция для самых умных">';
+		echo '
+	<p><h3>Инструкция для самых маленьких</h3></p>
+	<ol>
+		<li>Жмем на кнопку поделиться;</li>
+		<li>Выбираем "HTML - код";</li>
+		<li>Копируем кусок кода выделенный красным маркером на изображении.</li>
+	</ol>
+	<img src="'.plugins_url('Manual.jpg', __FILE__).'" alt="Инструкция для самых умных">';
 	}
 	
 	function activate()
@@ -125,7 +137,7 @@ $my_plugin = new plugin_class();
 
 $path_to_php_file_plugin = basename(__FILE__); //'3Whale.php'
 
-$my_plugin->page_title = 'Плеер для 3х китов'; // название плагина (заголовок)
+$my_plugin->page_title = '3 Кита'; // название плагина (заголовок)
 $my_plugin->menu_title = '3 Кита'; // название в меню
 $my_plugin->access_level = 7; // уровень доступа
 $my_plugin->add_page_to = 2; // куда добавлять страницу: 1=главное меню 2=настройки 3=управление 4=шаблоны 5=плагины
