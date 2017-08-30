@@ -65,6 +65,7 @@ EOF;
 			);
 			update_option('3Whale_options', $options, 'Настройки плагина 3х китов', 'yes');
 			//Обновление страницы для сброса кеша
+			//$id_home_page = (int)get_option( 'page_on_front' );
 			$my_post = array(
 				'ID' => 46213
 			);
@@ -121,7 +122,7 @@ echo '</table>';
 		delete_option('3Whale_options');
 	}
 
-	function WhalePlayer( $atts ) 
+	function whale_player( $atts ) 
 	{
 		$options = get_option('3Whale_options');
 		if($options['is_active'] == true)
@@ -151,6 +152,6 @@ $my_plugin->short_description = 'Плагин добавляет шорткод 
 add_action('admin_menu', array($my_plugin, 'add_admin_menu'));
 add_action('deactivate_' . $path_to_php_file_plugin, array($my_plugin, 'deactivate')); 
 add_action('activate_' . $path_to_php_file_plugin, array($my_plugin, 'activate')); 
-add_shortcode('3WhalePlayer', array($my_plugin, 'WhalePlayer'));
+add_shortcode('3WhalePlayer', array($my_plugin, 'whale_player'));
 
 ?>
