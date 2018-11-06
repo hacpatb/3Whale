@@ -154,7 +154,7 @@ $my_plugin->add_page_to = 2; // куда добавлять страницу: 1=
 $my_plugin->short_description = 'Плагин добавляет шорткод для плеера 3х китов';
 
 
-##################################################################
+###################################################################
 
 add_action('admin_menu', array($my_plugin, 'add_admin_menu'));
 add_action('deactivate_' . $path_to_php_file_plugin, array($my_plugin, 'deactivate')); 
